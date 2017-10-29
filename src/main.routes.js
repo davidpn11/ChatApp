@@ -6,7 +6,11 @@ export default function routes($urlRouterProvider, $stateProvider) {
     $stateProvider
         .state('/', {
             url:'/',
-            templateUrl: 'src/main.html',            
+            views: {
+                "": {
+                    templateUrl: 'src/main.html',
+                }
+            }   
         });
 };
 
