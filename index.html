@@ -1,0 +1,17 @@
+<!doctype html>
+<html ng-app="ChatApp">
+<head>
+  <title>webpack/ES6 setup</title>
+  <link rel="stylesheet" href="dist/bundle.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body >
+  <ui-view></ui-view>    
+  <script src="dist/bundle.js"></script>
+  <script>
+    $(document).ready(function() {
+      $(".button-collapse").sideNav();
+    });
+  </script>
+</body>
+</html>

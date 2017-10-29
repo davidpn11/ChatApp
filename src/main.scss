@@ -1,0 +1,43 @@
+/** postcss-bem-linter: define main-component; weak */
+$color: #555;
+$green-bright: #3f0;
+$background-content: #e5f8fa;
+$background-header: #00acc1;
+
+html, body, main {
+  background-color: $background-content;  
+  height: 100%;
+}
+body {
+  overflow: hidden;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  margin-left: 300px;
+  border: 1px solid red;
+  
+}
+
+.chat-footer {
+  height: 150px;
+  flex: 0 0 auto;
+  border: 1px solid green;
+}
+
+@media only screen and (max-width: 992px) {
+  main {
+    margin-left: 0;
+  }
+}
+
+.header-color {
+  background-color:  $background-header;
+}
+
+.content-container {
+  position: relative;
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
