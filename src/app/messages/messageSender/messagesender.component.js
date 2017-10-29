@@ -4,5 +4,5 @@ module.exports = {
 }
 
 function senderController() {
-    console.log('carregou contactsCtrl');
+    console.log('carregou senderController');
 }

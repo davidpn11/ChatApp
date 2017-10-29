@@ -10,18 +10,11 @@ import uirouter from 'angular-ui-router';
 import routes from './main.routes';
 require('./main.scss');
 
-//components
-import contactsList from './app/contacts/contacts.component'
-import navHeader from './app/navHeader/navHeader.component'
-import messageBox from './app/messages/messageBox/messagebox.component'
-import messageSender from './app/messages/messageSender/messagesender.component'
+//modules
+import contacts from './app/contacts'
+import messages from './app/messages'
 
-
-angular.module('ChatApp',['ui.router'])
-.component('contactsList',contactsList)
-.component('navHeader',navHeader)
-.component('messageBox',messageBox)
-.component('messageSender',messageSender)
-.config(routes);
+angular.module('ChatApp',['ui.router', contacts, messages])
+    .config(routes);
 
 

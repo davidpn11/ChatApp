@@ -4,5 +4,5 @@ module.exports = {
 }
 
 function navHeaderController() {
-    console.log('carregou contactsCtrl');
+    console.log('carregou navHeaderController');
 }
