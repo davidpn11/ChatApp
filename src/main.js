@@ -8,6 +8,8 @@ import 'materialize-css/dist/js/materialize.js';
 import 'tachyons/css/tachyons.min.css';
 import uirouter from 'angular-ui-router';
 import routes from './main.routes';
+import styles from './app/styles.scss';
+
 require('./main.scss');
 
 //modules

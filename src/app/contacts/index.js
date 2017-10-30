@@ -1,5 +1,4 @@
 import angular from 'angular'
-
 import contactsList from './contactsList/contactsList.component'
 import navHeader from './navHeader/navHeader.component'
 

@@ -16,14 +16,11 @@ main {
   display: flex;
   flex-direction: column;
   margin-left: 300px;
-  border: 1px solid red;
-  
 }
 
-.chat-footer {
+.msg-sender {
   height: 150px;
   flex: 0 0 auto;
-  border: 1px solid green;
 }
 
 @media only screen and (max-width: 992px) {
@@ -36,7 +33,7 @@ main {
   background-color:  $background-header;
 }
 
-.content-container {
+.messages-container {
   position: relative;
   flex: 1 1 auto;
   overflow-y: auto;
