@@ -33,7 +33,9 @@
   "dependencies": {
     "angular": "^1.6.6",
     "angular-ui-router": "^0.4.3",
+    "angularfire": "^2.3.0",
     "extract-text-webpack-plugin": "^3.0.1",
+    "firebase": "^4.6.1",
     "materialize-css": "^0.100.2"
   }
 }

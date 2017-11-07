@@ -1,7 +1,12 @@
 <ul id="nav-mobile" class="side-nav fixed" style="transform: translateX(0px);"> <ul id="nav-mobile" class="side-nav fixed" style="transform: translateX(0%);">    
     <li>
-        <div class="card search-wrapper">
-            <input ng-change="ctrl.makeSearch()" ng-model='ctrl.filter' class='search-input' placeholder="Search" id="first_name" type="text" class="validate">
+        {{ctrl.object.name}} <br>
+        <button ng-click="ctrl.signIn()" class='btn'>Login</button>
+
+    </li>
+    <li>
+        <div class="card search-wrap">
+            <input ng-change="ctrl.makeSearch()" ng-model='ctrl.filter' class='input-search' placeholder="Search" id="first_name" type="text" class="validate">
             <i class="material-icons">search</i>
             </input>
         </div>

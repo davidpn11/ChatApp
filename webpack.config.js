@@ -16,18 +16,7 @@ module.exports = {
   },
 
   plugins: [
-    // Specify the resulting CSS filename
     new ExtractTextPlugin('dist/bundle.css'),
-
-    // Stylelint plugin
-    // new styleLintPlugin({
-    //   configFile: '.stylelintrc',
-    //   context: '',
-    //   files: '**/*.scss',
-    //   syntax: 'scss',
-    //   failOnError: false,
-    //   quiet: false
-    // })
   ],
 
   module: {
@@ -55,7 +44,10 @@ module.exports = {
       },
       { 
         test: /\.html$/,
-         loader: "html-loader" },
+         loader: "html-loader" 
+      },
+      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url-loader?limit=10000&mimetype=application/font-woff' },
+      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file-loader' }
     ]
   },
 
