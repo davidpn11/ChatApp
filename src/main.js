@@ -27,9 +27,10 @@ var config = {
 //modules
 import contacts from './app/contacts'
 import messages from './app/messages'
+import login from './app/login'
 
 
-angular.module('ChatApp',['ui.router', contacts, messages, 'firebase'])
+angular.module('ChatApp',['ui.router', contacts, messages, login, 'firebase'])
     .config(routes);
 
 
