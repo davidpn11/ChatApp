@@ -4,5 +4,4 @@ module.exports = {
 }
 
 function messagesBoxController() {
-    console.log('carregou messagesBoxController');
 }

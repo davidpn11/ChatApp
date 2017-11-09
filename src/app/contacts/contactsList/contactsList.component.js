@@ -7,7 +7,6 @@ module.exports = {
 }
 
 function contactsController($firebaseObject) {
-    console.log('carregou contactsController');
     this.filter = "";
     this.allContacts = [{'name':'David'}, {'name':'Mariana'}, {'name':'Carol'}, {'name':'Caio'}];
     this.contacts = this.allContacts;
@@ -28,5 +27,5 @@ function contactsController($firebaseObject) {
         else {
             this.contacts = this.allContacts;
         }
-    };   
+    };
 }

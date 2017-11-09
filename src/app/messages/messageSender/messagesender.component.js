@@ -4,5 +4,4 @@ module.exports = {
 }
 
 function senderController() {
-    console.log('carregou senderController');
 }

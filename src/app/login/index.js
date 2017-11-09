@@ -3,47 +3,64 @@ import firebase from 'firebase/app';
 
 export default angular.module('login',[])
     .controller('loginController',loginController)
+    .service('loginService', loginService)
     .name
-    
 
-function loginController($firebaseObject, $state) {    
-
-    let ctrl = this;
+function loginService($firebaseObject, $state, $q) {
+    console.log('login service');
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().useDeviceLanguage();
+    var userData = {};
+
+
     this.googleSignIn = () => {
-        console.log('sign');
         firebase.auth().signInWithPopup(provider).then(function(result) {
-            // This gives you a Google Access Token. You can use it to access the Google API.
             var token = result.credential.accessToken;
-            // The signed-in user info.
             var user = result.user;
-
-            console.log(user.displayName, user.photoURL, user.email);
-
             // const root = firebase.database().ref().child('Contact');
             // this.object = $firebaseObject(root);
             // console.log(token,user,this.object);
-            // ...
           }).catch(function(error) {
               console.log(error);
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // The email of the user's account used.
-            var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            var credential = error.credential;
-            // ...
           });
     };
 
+
+    this.getUserData = () => {
+        return $q((resolve, reject) => {
+            setTimeout(() => {                
+                firebase.auth().onAuthStateChanged( firebaseUser => {
+                    if (firebaseUser) {
+                        resolve(firebaseUser);
+                    } else {                
+                        reject(Error('No User'));
+                    }
+                });
+            },1000);
+          });
+    };
+
+    this.userSignOut = () => {
+        console.log('signing out...');
+        userData = {};
+        firebase.auth().signOut();
+        $state.go('/login');    
+    };
+
     firebase.auth().onAuthStateChanged( firebaseUser => {
-        console.log('chamada');
         if(firebaseUser) {
-            console.log('redirecting');
+            userData = firebaseUser;
+            console.log('pegou o usurario');
             $state.go('/');
-            // ctrl.currentUser = firebaseUser;
         }
     });
+}
+    
+
+function loginController(loginService) {    
+
+    let ctrl = this;
+    this.signIn = () => {
+        loginService.googleSignIn();
+    };
 }

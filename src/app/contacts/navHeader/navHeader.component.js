@@ -6,13 +6,25 @@ module.exports = {
     controllerAs: 'ctrl'
 }
 
-function navHeaderController($firebaseObject, $state) {
-    console.log('carregou navHeaderController');
+function navHeaderController(loginService) {
+    this.userName = "";
+    this.$onInit = function () {
+        loginService.getUserData()
+        .then((response) => {
+            console.log(response);            
+            this.user = response;
+            console.log(this.user.displayName);
+            this.userName = this.user.displayName;
+        })
+        .catch((error) => {
+            console.log(error);
+        });  
+      };   
+         
 
 
-    this.userSignOut = () => {
-        console.log('signing out...');
-        firebase.auth().signOut();
-        $state.go('/login');
+    this.signOut = () => {
+        console.log('signing out...')
+        loginService.userSignOut();
     };
 }
