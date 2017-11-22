@@ -18,10 +18,55 @@ main {
   margin-left: 300px;
 }
 
-.msg-sender {
-  height: 150px;
-  flex: 0 0 auto;
+.msg-sender-wrapper {
+  position: relative;  
+  height: 130px;
+  padding: 0 10px;
+  flex: 1 1 auto;
+
+  a {
+    margin-top: 8px;
+    background-color: $background-header;
+  }
+
+  .msg-sender-box {
+    height: 55px;
+    width: 93%;
+    float: right;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+
+    .input-msg {
+      
+      width: 90%;  
+      height: 20px;
+      border: none!important;
+      box-shadow: none!important;
+      outline: none;
+      margin-left: 20px;
+      border-bottom: 1px solid $color!important;
+    }
+    
+    i {
+      cursor: pointer;
+      margin-left: 5px;
+      font-size: 36px;
+    }
+    .input-msg:focus {
+      border-bottom: 2px solid $background-header!important;
+    }
+
+    .input-msg:focus + i {
+      color: $background-header;
+    }
+
+  }
+
 }
+
+
+
 
 @media only screen and (max-width: 992px) {
   main {
