@@ -1,10 +1,14 @@
 .u-flex {
-    display: -webkit-flex;
-    display: flex;
+    display: -webkit-flex!important;
+    display: flex!important;
 }
 
 .u-self-center {
     align-self: center;
+}
+
+.u-items-center {
+    align-items: center;
 }
 
 .u-space-between {

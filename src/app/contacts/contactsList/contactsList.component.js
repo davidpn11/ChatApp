@@ -10,8 +10,7 @@ function contactsController($firebaseObject, loginService, $timeout) {
     let ctrl = this;
     this.filter = "";
     this.allContacts = [];
-    this.contacts = this.allContacts;      
-    this.currentUser = 
+    this.contacts = [];
 
     this.$onInit = function () {
         loginService.getUserData()
@@ -35,35 +34,31 @@ function contactsController($firebaseObject, loginService, $timeout) {
     
     const contactsRef = firebase.database().ref().child('Contacts');
     
-    contactsRef.on('child_added', function(data) {
+    contactsRef.on('child_added', (data) => {
         $timeout(() => {
             if(ctrl.currentUser.uid != data.val().uid) {
                 let user = {};
                 user.uid = data.val().uid;
                 user.userName = data.val().userName;
                 user.profilePicture = data.val().profile_picture;
-                ctrl.contacts.push(user);
-                console.log(data.key, data.val());
+                this.contacts.push(user);
+                this.allContacts.push(user);
             }
         },100);        
       });
 
        
     this.makeSearch = () => {
-        console.log(this.filter);        
         if(this.filter != undefined && this.filter != "") {
             this.contacts = [];
-            for(var i = 0; i < this.allContacts.length; i++) {
-                let contact = this.allContacts[i];
-                if(contact.name.toLowerCase().indexOf(this.filter) !== -1) {
+            this.allContacts.forEach(contact => {
+                if(contact.userName.toLowerCase().indexOf(this.filter) !== -1) {
                     this.contacts.push(contact);
                 }
-            }
+            });               
         }
         else {
             this.contacts = this.allContacts;
         }
     };
-
-    
 }
