@@ -2,7 +2,7 @@
     <!-- <span>Mensagem</span> -->
     <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">add</i></a>
     <div class="card msg-sender-box">
-        <input id='message-input' class='input-msg' type="" name=""></input>
+        <input id='message-input' ng-keypress="ctrl.handleEnterPressed($event.keyCode)" class='input-msg' type="" name=""></input>
         <i ng-click='ctrl.sendMsg()' class="material-icons">send</i>
         <!-- <input ng-change="ctrl.makeSearch()" ng-model='ctrl.filter' class='input-search' placeholder="Search" id="first_name" type="text" class="validate">
         </input> -->

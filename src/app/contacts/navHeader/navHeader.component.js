@@ -12,7 +12,9 @@ function navHeaderController(loginService, $rootScope) {
     (event, toState, toParams, fromState, fromParams) => { 
         firebase.database().ref('Contacts/'+ toParams.userID).once('value')
         .then( (snapshot) => {
-            this.targetName = snapshot.val().userName;
+            if(snapshot.val()) {
+                this.targetName = snapshot.val().userName;
+            }
         });
     })
     

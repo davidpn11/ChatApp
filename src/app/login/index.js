@@ -46,7 +46,6 @@ function loginService($firebaseObject, $state, $q) {
     };
 
     this.userSignOut = () => {
-        console.log('signing out...');
         userData = {};
         firebase.auth().signOut();
         $state.go('login');    
