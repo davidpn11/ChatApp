@@ -7,7 +7,6 @@ export default angular.module('login',[])
     .name
     
 function loginService($firebaseObject, $state, $q) {
-    console.log('login service');
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().useDeviceLanguage();
     var userData = {};
@@ -17,7 +16,6 @@ function loginService($firebaseObject, $state, $q) {
         firebase.auth().signInWithPopup(provider).then(function(result) {
             var token = result.credential.accessToken;
             var user = result.user;            
-            console.log(token,user,this.object);
           }).catch(function(error) {
               console.log(error);
           });
@@ -48,7 +46,6 @@ function loginService($firebaseObject, $state, $q) {
     firebase.auth().onAuthStateChanged( firebaseUser => {
         if(firebaseUser) {
             userData = firebaseUser;
-            console.log('pegou o usurario');
             $state.go('/');
         }
     });
