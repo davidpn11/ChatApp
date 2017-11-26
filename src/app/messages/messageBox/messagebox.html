@@ -1,5 +1,5 @@
 <main>
-    <div id='messages-container' class="messages-container">
+    <div id='messages-container' class="messages-container" scroll-glue>
         <div ng-repeat="message in ctrl.messagesArray">
             <msg-ballon-left ng-if='message.msgSource != ctrl.sourceUser.uid'>{{message.msgContent}}</msg-ballon-left>            
             <msg-ballon-right ng-if='message.msgSource == ctrl.sourceUser.uid'>{{message.msgContent}}</msg-ballon-right>            
