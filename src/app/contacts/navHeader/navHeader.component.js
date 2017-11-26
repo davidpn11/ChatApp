@@ -6,23 +6,16 @@ module.exports = {
     controllerAs: 'ctrl'
 }
 
-function navHeaderController(loginService) {
-    this.userName = "";
-    this.$onInit = function () {
-        loginService.getUserData()
-        .then((response) => {
-            console.log(response);            
-            this.user = response;
-            console.log(this.user.displayName);
-            this.userName = this.user.displayName;
-        })
-        .catch((error) => {
-            console.log(error);
-        });  
-      };   
-         
-
-
+function navHeaderController(loginService, $rootScope) {
+    this.targetName = "";
+    $rootScope.$on('$stateChangeStart', 
+    (event, toState, toParams, fromState, fromParams) => { 
+        firebase.database().ref('Contacts/'+ toParams.userID).once('value')
+        .then( (snapshot) => {
+            this.targetName = snapshot.val().userName;
+        });
+    })
+    
     this.signOut = () => {
         console.log('signing out...')
         loginService.userSignOut();
