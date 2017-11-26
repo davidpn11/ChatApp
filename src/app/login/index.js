@@ -21,12 +21,21 @@ function loginService($firebaseObject, $state, $q) {
           });
     };
 
+    this.getLocalUserData = () => {
+        return userData || {};
+    };
+
 
     this.getUserData = () => {
         return $q((resolve, reject) => {
             setTimeout(() => {                
                 firebase.auth().onAuthStateChanged( firebaseUser => {
-                    if (firebaseUser) {                        
+                    if (firebaseUser) {   
+                        userData = {
+                            userName: firebaseUser.displayName,
+                            uid: firebaseUser.uid,
+                            profile_picture: firebaseUser.photoURL
+                        };
                         resolve(firebaseUser);
                     } else {                
                         reject(Error('No User'));
@@ -40,13 +49,24 @@ function loginService($firebaseObject, $state, $q) {
         console.log('signing out...');
         userData = {};
         firebase.auth().signOut();
-        $state.go('/login');    
+        $state.go('login');    
     };
 
     firebase.auth().onAuthStateChanged( firebaseUser => {
         if(firebaseUser) {
+            const userRef = firebase.database().ref('Contacts/' + firebaseUser.uid);
+            userRef.once('value').then( (snap) => {
+                if(!snap.val()) {
+                    userRef.set({
+                        uid : firebaseUser.uid,
+                        userName: firebaseUser.displayName,
+                        profile_picture : firebaseUser.photoURL
+                    });
+                }                         
+            });
+
             userData = firebaseUser;
-            $state.go('/');
+            $state.go('root');
         }
     });
 }

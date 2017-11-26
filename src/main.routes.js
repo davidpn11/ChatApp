@@ -4,7 +4,15 @@ routes.$inject = ['$urlRouterProvider','$stateProvider'];
 export default function routes($urlRouterProvider, $stateProvider) {
     $urlRouterProvider.otherwise('/login');
     $stateProvider
-        .state('/', {
+        .state('login', {
+            url:'/login',
+            views: {
+                "": {
+                    templateUrl: 'src/app/login/login.html',
+                }
+            }  
+        })
+        .state('root', {
             url:'/',
             views: {
                 "": {
@@ -12,14 +20,17 @@ export default function routes($urlRouterProvider, $stateProvider) {
                 }
             }   
         })
-        .state('/login', {
-            url:'/login',
+        .state('root.user', {            
+            url:':userID',
             views: {
                 "": {
-                    templateUrl: 'src/app/login/login.html',
+                    templateUrl: 'src/app/messages/messages.html',
                 }
-            }  
+            }   
         });
+        
+
+       
 };
 
 

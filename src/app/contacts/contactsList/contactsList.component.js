@@ -12,20 +12,14 @@ function contactsController($firebaseObject, loginService, $timeout) {
     this.allContacts = [];
     this.contacts = [];
 
-    this.$onInit = function () {
+    this.$onInit = () => {        
         loginService.getUserData()
         .then((response) => {
-            ctrl.currentUser = {
+            this.currentUser = {
                 uid : response.uid,
                 userName: response.displayName,
                 profile_picture : response.photoURL
-            };
-
-            firebase.database().ref('Contacts/' + response.uid).set({
-                uid : response.uid,
-                userName: response.displayName,
-                profile_picture : response.photoURL
-              });
+            };          
         })
         .catch((error) => {
             console.log(error);
@@ -36,7 +30,7 @@ function contactsController($firebaseObject, loginService, $timeout) {
     
     contactsRef.on('child_added', (data) => {
         $timeout(() => {
-            if(ctrl.currentUser.uid != data.val().uid) {
+            if(this.currentUser.uid != data.val().uid) {
                 let user = {};
                 user.uid = data.val().uid;
                 user.userName = data.val().userName;
@@ -47,7 +41,6 @@ function contactsController($firebaseObject, loginService, $timeout) {
         },100);        
       });
 
-       
     this.makeSearch = () => {
         if(this.filter != undefined && this.filter != "") {
             this.contacts = [];
